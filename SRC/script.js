@@ -214,3 +214,23 @@ inPangram = (str) => {
 }
 const pangramOutput = inPangram("The quick brown fox jumps over the lazy dog");
 console.log(`pangramOutput: ${pangramOutput}`);
+
+console.log('_____________________________________________');
+
+
+pick = (arr) => {
+  const thisOne = Math.floor(Math.random() * arr.length);
+  return arr[thisOne]
+};
+
+getCard = () => {
+  const playingCards = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
+  const suites = ['heards', 'diamonds', 'clubs', 'spades'];
+
+  return {
+    value: pick(playingCards),
+    suite: pick(suites)
+  }
+}
+
+console.log('cardPick', getCard())
