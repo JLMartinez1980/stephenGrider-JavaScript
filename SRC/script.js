@@ -234,3 +234,141 @@ getCard = () => {
 }
 
 console.log('cardPick', getCard())
+
+console.log('_____________________________________________');
+//BLOCK scope
+
+if (true) {
+  let animal = 'eel';
+}
+
+//=> let and const are specefic
+// => var gives access to the variable inside or outside this specefic loop
+// ==> var is not scoped to any particular loop
+// ===> var is not block scoped
+//animal not available outside of the `if` statement
+
+
+/*
+var i = 10;
+
+for (var i = 0; i < something.length; i++) {
+console.log(i) => returns index
+}
+
+console.log(i) => returns the last element of the loop, not the global index
+ */
+
+ console.log('_____________________________________________');
+//can list params in any order
+
+//got to list the keys, not the values.
+signUp = ( {name, password, email, dateOfBirth, city} ) => {
+return `The test ${name}, ${email}`
+}
+
+
+const user = {
+  name: 'myName',
+  password: 'myPassword',
+  email: 'something@something.com',
+  dateOfBirth: 1/1/2000,
+  city: 'here'
+}
+
+const signUpOutput = signUp(user);
+console.log('sign', signUpOutput);
+
+console.log('_____________________________________________');
+
+const points = [
+  [4, 5],
+  [10, 1],
+  [0, 40]
+]
+
+//how to change into an object with x and y as keys
+
+const findLocation = points.map( ( [x, y] ) => {
+  return {x, y}
+})
+
+console.log('pointes', findLocation)
+
+console.log('_____________________________________________');
+
+function add(x, y) {
+return x + y;
+}
+
+subtract = (x,y) => {
+  return x - y;
+}
+
+const divide = (x, y) => {
+  return x / y;
+};
+
+const multiply = function(x, y) {
+  return x * y;
+}
+
+const operations = [add, subtract, divide, multiply];
+
+for (let func of operations) {
+  console.log(`func:`, func(30,5))
+};
+
+console.log('_____________________________________________');
+
+callTwice = (func) => {
+  func();
+  func();
+}
+
+const cry = () => {
+  console.log('no')
+}
+
+console.log(callTwice(cry))
+
+
+console.log('_____________________________________________');
+
+const repeatNTimes = (action, num) => {
+  for (let i = 0; i < num; i++) {
+    action();
+  }
+}
+
+console.log('test', repeatNTimes(cry, 4));
+
+console.log('_____________________________________________');
+
+makebetween = (x, y) => {
+  return function(num) {
+    return num >= x && num <= y
+  }
+};
+
+const isNiceWeather = makebetween(80, 85);
+console.log(isNiceWeather(83));
+
+console.log('_____________________________________________');
+
+const grumpus = () => {
+  alert('grumpy');
+}
+
+// setTimeout(function(){
+//   alert("I'm grumpy")
+// }, 5000);
+// console.log('tester', grumpus);
+
+
+console.log('_____________________________________________');
+
+const btn = document.querySelector('button');
+btn.addEventListener('click', function() {
+  alert('I said not to click');
+})
