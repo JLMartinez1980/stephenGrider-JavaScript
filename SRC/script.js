@@ -366,9 +366,118 @@ const grumpus = () => {
 // console.log('tester', grumpus);
 
 
-console.log('_____________________________________________');
-
 const btn = document.querySelector('button');
 btn.addEventListener('click', function() {
   alert('I said not to click');
 })
+
+console.log('_____________________________________________');
+
+const books = [
+  {
+    title: 'Good',
+    authors: ['john', 'jim'],
+    rating: 7,
+    genre: 'fiction'
+  },
+  {
+    title: 'bad',
+    authors: ['Sam', 'Samantha'],
+    rating: 7,
+    genre: 'fantasy'
+  },
+  {
+    title: 'ugly',
+    authors: ['Jack', 'Jill'],
+    rating: 5,
+    genre: 'fantasy'
+  },
+  {
+    title: 'someday',
+    authors: ['James', 'jim'],
+    rating: 3,
+    genre: 'fiction'
+  },
+  {
+    title: 'today',
+    authors: ['No', 'Yes'],
+    rating: 6,
+    genre: 'horror'
+  },
+]
+
+//find ratings greater than 4 => will return the first book to make the criteria
+
+const ratings = books.find( book => book.rating >= 4);
+console.log(`book:`, ratings)
+
+const findGenre = books.filter( book => book.genre.includes('fantasy'));
+console.log('find', findGenre);
+
+const findTitle = books.filter( book => book.title === 'today');
+console.log('findTitle', findTitle);
+
+const allTheSameGenre = books.every( book => book.genre === 'fiction');
+console.log('all', allTheSameGenre);
+
+const someTheSameGenrea = books.some( book => book.genre === 'fiction');
+console.log('some', someTheSameGenrea)
+
+
+const randomNums = [1, 22, 456, 34, 943, 1000, 3];
+
+const smallNums = randomNums.sort((a,b) => a - b);
+console.log(`smallNums: ${smallNums}`);
+const largeNums = randomNums.sort( (a,b) => b - a);
+console.log(`largeNums: ${largeNums}`);
+
+const grades = [ 88, 77, 92, 93, 84];
+
+const maxGrades = grades.reduce( (max, currentValue) => {
+  if (currentValue > max) return currentValue;
+  return max
+}, 0);
+
+const minGrades = grades.reduce( (min, currentValue) => {
+  return Math.min(min, currentValue) //can do the same for Max
+})
+
+console.log(`maxGrades: ${maxGrades}`)
+
+const votes = ['y', 'y', 'n', 'n', 'n', 'y', 'n', 'y', 'y', 'n', 'n', 'n', 'n', 'y'];
+
+const tallyVotes = votes.reduce( (acc, current) => {
+  if (acc[current]) {
+    acc[current]++
+  } else {
+    acc[current] = 1;
+  }
+  return acc;
+}, {})
+
+console.log('tallyVotes', tallyVotes);
+
+const categorizeBooksByRating = books.reduce( (acc, book) => {
+  const key = Math.floor(book.rating);
+
+  if (!acc[key]) { acc[key] = [] };
+
+  acc[key].push(book);
+
+  return acc;
+}, {})
+
+console.log('categorizeBooksByRating', categorizeBooksByRating);
+
+const spreadNums = [1, 4, 6, 19, 45, 32];
+//spread takes away the array brackets
+
+Math.max(spreadNums);  //undefined
+Math.max(...spreadNums); //breaks each element into an single numbers
+
+const cephalopods = ['dumbo octopus', 'humboldt squid', 'flamboyant cuttlefish'];
+const gatropods = ['giant african snail', 'banana slug', 'variable neon slug'];
+const cinidaira = ['fire coral', 'moon jelly'];
+
+const mollusca = [...cephalopods, ...cinidaira];
+console.log(`mollusca: ${mollusca}`);
