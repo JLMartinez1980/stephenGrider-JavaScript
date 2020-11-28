@@ -481,3 +481,100 @@ const cinidaira = ['fire coral', 'moon jelly'];
 
 const mollusca = [...cephalopods, ...cinidaira];
 console.log(`mollusca: ${mollusca}`);
+
+console.log('_____________________________________________');
+
+const feline = {
+  legs: 4,
+  family: 'Felidae'
+};
+
+const canine = {
+  family: 'Caninae',
+  furry: true
+}
+
+const dog = {
+  ...canine,
+  isPet: true,
+}
+
+console.log('dog', dog);
+
+const raceResults = [
+  'Eliud Kipchoge',
+  'Feyisa Lelisa',
+  'Galen Rupp',
+  'Ghirmay Ghebreslassie',
+  'Alphonce Simbu',
+  'Jared Ward'
+];
+
+//create a variable to house the first movieThree using Index not preferred way
+
+const [gold, silver, bronze] = raceResults;
+
+console.log(`gold: ${gold}`);
+
+const [first, , , fourth] = raceResults;
+console.log(`fourth: ${fourth}`);
+
+const [winner, ...others] = raceResults;
+console.log(`others: ${others}`);
+
+//objects
+const runners = {
+  first: 'Eluid',
+  last: 'Kipchage',
+  country: 'Kenya',
+  title: 'Elder of the Order of the Golden Heard of Kenya'
+};
+
+const {firstN, lastN, country} = runners;
+
+console.log('country:', country);
+
+// const raceResultsObj = [
+//   {
+//   firstName: "Euid",
+//   lastName: 'Kipchage',
+//   country: 'Kenya'
+//   },
+//   {
+//   firstName: 'Feyisa',
+//   lastName: 'Lilesa',
+//   country: 'Ethiopia'
+//   },
+//   {
+//   firstName: 'Galen',
+//   lastName: 'Rupp',
+//   country: 'United States'
+//   }
+// ];
+//
+// console.log(raceResultsObj);
+//
+// const [, {country}] = raceResultsObj;
+// console.log('firstN', first);
+
+//computed properties
+
+const role = 'host';
+const person = 'Jools Holland';
+const role2 = 'Directer';
+const person2 = "James Cameron"
+const directerTeam = {
+  [role]: person,
+  [role2]: person2
+}
+console.log('team', directerTeam);
+
+//add methods (functions) to objects
+
+const mathFormulas = {
+  multiply: (x, y) => x * y,
+  divide: (x, y) => x / y,
+  square: x => Math.pow(x, 2)
+};
+
+console.log(`Math:`, mathFormulas);
