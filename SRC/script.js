@@ -578,3 +578,122 @@ const mathFormulas = {
 };
 
 console.log(`Math:`, mathFormulas);
+
+//figuring out the shorthand
+
+console.log('________________________________________');
+
+//KEYWORD 'this'
+
+function sayHi() {
+  console.log('hi');
+  console.log(this);
+}
+
+//In the above function 'this' refers to the Window objects
+
+const thisGreet = function() {
+  console.log(this);
+};
+
+const famousPerson = {
+  first: 'Cherilyn',
+  last: 'Sarkisisan',
+  nickName: 'Cher',
+  fullName() {
+    const {first, last, nickName} = this
+    return `${first}, ${last}, AKA ${nickName}`
+  },
+  printBio() {
+    const fullName = this.fullName();
+
+    console.log(`${fullName} is a person`)
+  },
+  laugh: () => {
+    console.log('this', this);
+    //This points to the window object
+    console.log('test', `${this.nickName}`);
+  }
+}
+
+
+
+
+const annoyer = {
+  phrases: ['literally', 'cray cray', 'Not even', 'YOLO', "Can't stop won't stop"],
+  pickPhrase() {
+    const {phrases} = this;
+    const idx =  Math.floor(Math.random() * phrases.length);
+    return phrases[idx];
+  },
+  start() {
+    console.log('this', this.pickPhrase)
+    this.timerId = setInterval( () => {
+      console.log(this.pickPhrase())
+    }, 3000)
+  },
+  stop() {
+    clearInterval(this.timerId);
+    console.log('end');
+  }
+}
+
+
+
+
+//first with a function
+
+// const makeDeck = () => {
+//   const deck = [];
+//   const suits = ["Heart", "Diamon", "Club", "Spade"];
+//   const values = '2,3,4,5,6,7,8,9,10,J,Q,K,A';
+//
+//   for (let value of values.split(',')) {
+//     for (let suit of suits) {
+//       deck.push({
+//         suit,
+//         value
+//       })
+//     }
+//   }
+//   return deck
+// }
+
+//now with an object
+const dealersDeck = {
+  deck: [],
+  currentHand: [],
+  suits: ["Heart", "Diamon", "Club", "Spade"],
+  values: '2,3,4,5,6,7,8,9,10,J,Q,K,A',
+  initilizeDeck() {
+    const {deck, suits, values} = this;
+    for (let value of values.split(',')) {
+      for (let suit of suits) {
+        deck.push({
+          suit,
+          value
+        })
+      }
+    }
+    return deck
+  },
+  drawCard() {
+    const {deck, currentHand} = this;
+    const draw = deck.pop();
+    return currentHand.push(draw);
+  },
+  drawMultipleCards(cardArray) {
+    const cards = [];
+    for (let i = 0; i < cardArray; i++) {
+      cards.push(dealersDeck.drawCard());
+    }
+    return cards;
+  },
+  shuffleCards() {
+    const {deck} = this
+    for (let i = deck.length -1; i > 0; i--) {
+      let j = Math.floor(Math.random() * (i + 1));
+      [deck[i], deck[j]] = [deck[j], deck[i]];
+    }
+  }
+}
